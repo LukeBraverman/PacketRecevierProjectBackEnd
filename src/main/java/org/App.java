@@ -59,8 +59,8 @@
                 System.out.println("🌐 Protocol: DNS Query");
             }
 
-            NetworkInterface networkInterface = NetworkInterface.getByInetAddress(packet.getAddress());
-            System.out.println("🌐 Interface: " + networkInterface.getDisplayName());
+//            NetworkInterface networkInterface = NetworkInterface.getByInetAddress(packet.getAddress());
+//            System.out.println("🌐 Interface: " + networkInterface.getDisplayName());
 
             System.out.println("\n------------------------------------");
 

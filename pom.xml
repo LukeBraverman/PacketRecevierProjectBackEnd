@@ -22,4 +22,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version> <!-- Update version if needed -->
+            <configuration>
+                <source>17</source>  <!-- Java version: change to 8, 11, or 17 based on your JDK -->
+                <target>17</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>
