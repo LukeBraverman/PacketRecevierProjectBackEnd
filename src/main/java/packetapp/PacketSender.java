@@ -1,4 +1,4 @@
-package org;
+package packetapp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

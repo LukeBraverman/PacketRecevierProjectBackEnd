@@ -1,4 +1,4 @@
-package org;
+package packetapp;
 
 import javax.sound.sampled.*;
 import java.net.*;

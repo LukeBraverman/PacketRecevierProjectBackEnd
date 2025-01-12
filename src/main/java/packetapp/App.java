@@ -1,4 +1,4 @@
-    package org;
+    package packetapp;
 
     import java.io.IOException;
     import java.net.DatagramPacket;
@@ -8,6 +8,8 @@
     import java.sql.SQLOutput;
     import java.time.Instant;
 
+    import static spark.Spark.*;
+
     /**
      * Hello world!
      *
@@ -15,6 +17,10 @@
     public class App
     {
         public static void main( String[] args ) throws IOException {
+
+            port(8080);
+
+            get("/hello", (req, res) -> "Hello from Spark Java!");
 
             int port = 9876;
             DatagramSocket socket = new DatagramSocket(port);
