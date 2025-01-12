@@ -9,8 +9,8 @@ public class PacketSender {
 
     public static void main(String[] args) throws IOException {
 
-        String message = "Hello, UDP!";
-        String targetIP = "192.168.1.253"; // Replace with your local IP
+        String message = "Hello, Linux, its Lukes Laptop!";
+        String targetIP = "3.8.183.9"; // Replace with your local IP
         int port = 9876; // The port your PacketInspector program is listening on
 
         // Convert the message to bytes
