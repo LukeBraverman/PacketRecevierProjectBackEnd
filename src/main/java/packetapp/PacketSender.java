@@ -9,7 +9,7 @@ public class PacketSender {
 
     public static void main(String[] args) throws IOException {
 
-        String message = "This is a 7th new packet!";
+        String message = "This is a 9th new packet!";
         String targetIP = "192.168.1.253"; // Replace with your local IP
         int port = 9876; // The port your PacketInspector program is listening on
 

@@ -69,7 +69,7 @@
             packetLog.setPacketLength(1);
             packetLog.setBufferSize(2);
             packetLog.setSenderPort(3);
-            packetLog.setSenderIp(0);
+            packetLog.setSenderIp("1.0.0.test");
             packetLog.setData("This is a test log.");
 
             packedLogs.add(packetLog);
@@ -101,6 +101,7 @@
 
                 // Extract details
                 InetAddress senderIP = packet.getAddress();
+                System.out.println("SenderIPTEST" + senderIP.getHostAddress());
                 int senderPort = packet.getPort();
                 int packetLength = packet.getLength();
                 int bufferSize = packet.getData().length;
@@ -124,7 +125,7 @@
                 newPacketLog.setPacketLength(packetLength);
                 newPacketLog.setBufferSize(bufferSize);
                 newPacketLog.setSenderPort(senderPort);
-                newPacketLog.setSenderIp(1);
+                newPacketLog.setSenderIp(senderIP.getHostAddress());
                 newPacketLog.setData(data);
 
                 packedLogs.add(newPacketLog);

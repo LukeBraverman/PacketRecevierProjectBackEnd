@@ -5,7 +5,7 @@ import java.util.Date;
 public class PacketLog {
 
     private String data;
-    private int senderIp;
+    private String senderIp;
     private int packetLength;
     private int bufferSize;
     private int senderPort;
@@ -20,11 +20,11 @@ public class PacketLog {
         this.data = data;
     }
 
-    public int getSenderIp() {
+    public String getSenderIp() {
         return senderIp;
     }
 
-    public void setSenderIp(int senderIp) {
+    public void setSenderIp(String senderIp) {
         this.senderIp = senderIp;
     }
 
