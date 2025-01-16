@@ -1,5 +1,7 @@
     package packetapp;
 
+    import com.google.gson.Gson;
+
     import java.io.IOException;
     import java.net.DatagramPacket;
     import java.net.DatagramSocket;
@@ -7,6 +9,10 @@
     import java.net.NetworkInterface;
     import java.sql.SQLOutput;
     import java.time.Instant;
+    import java.time.LocalTime;
+    import java.time.format.DateTimeFormatter;
+    import java.time.LocalDate;
+    import java.util.ArrayList;
 
     import static spark.Spark.*;
 
@@ -16,11 +22,70 @@
      */
     public class App
     {
+
+
         public static void main( String[] args ) throws IOException {
+
+            ArrayList<PacketLog> packedLogs = new ArrayList<>();
+            Gson gson = new Gson();
 
             port(8080);
 
+            // ✅ Add CORS Configuration Here
+            options("/*", (request, response) -> {
+                String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+                if (accessControlRequestHeaders != null) {
+                    response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+                }
+
+                String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+                if (accessControlRequestMethod != null) {
+                    response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+                }
+
+                return "OK";
+            });
+
+            before((request, response) -> {
+                response.header("Access-Control-Allow-Origin", "*");  // Allows requests from any origin
+                response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+                response.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+            });
+
+            PacketLog packetLog = new PacketLog();
+
+            LocalTime now = LocalTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+            String formattedTime = now.format(formatter);
+            packetLog.setTime(formattedTime);
+
+            LocalDate today = LocalDate.now();
+            // Define the desired date format (dd/MM/yyyy)
+            DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // Format the date as a String
+            String formattedDate = today.format(formatter2);
+            packetLog.setData(formattedDate);
+
+            packetLog.setPacketLength(1);
+            packetLog.setBufferSize(2);
+            packetLog.setSenderPort(3);
+            packetLog.setSenderIp(0);
+            packetLog.setData("This is a test log.");
+
+            packedLogs.add(packetLog);
+            
             get("/hello", (req, res) -> "Hello from Spark Java!");
+
+            get("/health", (req, res) -> {
+                res.status(200);
+                return "OK";
+            });
+
+            get("/logs", (req, res) -> {
+                res.status(200);
+                return gson.toJson(packedLogs);  // Convert ArrayList to JSON
+            });
+
 
             int port = 9876;
             DatagramSocket socket = new DatagramSocket(port);
