@@ -73,7 +73,7 @@
             packetLog.setData("This is a test log.");
 
             packedLogs.add(packetLog);
-            
+
             get("/hello", (req, res) -> "Hello from Spark Java!");
 
             get("/health", (req, res) -> {
@@ -103,6 +103,28 @@
             int bufferSize = packet.getData().length;
             int offset = packet.getOffset();
             String data = new String(packet.getData(), 0, packet.getLength());
+
+            PacketLog newPacketLog = new PacketLog();
+
+            LocalTime nowA = LocalTime.now();
+            DateTimeFormatter formatterA = DateTimeFormatter.ofPattern("h:mm a");
+            String formattedTimeA = nowA.format(formatterA);
+            newPacketLog.setTime(formattedTimeA);
+
+            LocalDate todayB = LocalDate.now();
+            // Define the desired date format (dd/MM/yyyy)
+            DateTimeFormatter formatterB = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            // Format the date as a String
+            String formattedDateB = todayB.format(formatterB);
+            newPacketLog.setData(formattedDateB);
+
+            newPacketLog.setPacketLength(packetLength);
+            newPacketLog.setBufferSize(bufferSize);
+            newPacketLog.setSenderPort(senderPort);
+            newPacketLog.setSenderIp(1);
+            newPacketLog.setData(data);
+
+            packedLogs.add(newPacketLog);
 
             // Display detailed packet info
             System.out.println("\n📦 Packet Received!");
@@ -134,6 +156,6 @@
 //            System.out.println("🌐 Interface: " + networkInterface.getDisplayName());
 
             System.out.println("\n------------------------------------");
-
+            socket.receive(packet);
         }
     }
