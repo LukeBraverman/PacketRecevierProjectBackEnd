@@ -1,6 +1,4 @@
-package packetapp;
-
-import java.util.Date;
+package packetapp.Model;
 
 public class PacketLog {
 
