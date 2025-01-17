@@ -1,4 +1,4 @@
-package org;
+package packetapp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -9,8 +9,10 @@ public class PacketSender {
 
     public static void main(String[] args) throws IOException {
 
-        String message = "Hello, Linux, its Lukes Laptop!";
-        String targetIP = "3.8.183.9"; // Replace with your local IP
+        String message = "NO 4!";
+         String targetIP = "localhost"; // Replace with your local IP
+        //String targetIP = "52.56.143.87"; // Replace with your local IP
+
         int port = 9876; // The port your PacketInspector program is listening on
 
         // Convert the message to bytes
