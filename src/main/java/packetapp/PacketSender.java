@@ -9,7 +9,7 @@ public class PacketSender {
 
     public static void main(String[] args) throws IOException {
 
-        String message = "NO 2!";
+        String message = "NO 4!";
          String targetIP = "localhost"; // Replace with your local IP
         //String targetIP = "52.56.143.87"; // Replace with your local IP
 
